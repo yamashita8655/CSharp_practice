@@ -19,7 +19,7 @@ public class CSharpTest : MonoBehaviour {
 		func2("arg");
 		func2 = Delegate2;
 		func2("arg2");
-		
+	
 		// ラムダメソッド
 		PrintLog func3 = () => { Debug.Log("ラムダメソッド"); };
 		func3();
