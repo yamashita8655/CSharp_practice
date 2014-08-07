@@ -22,6 +22,8 @@ namespace Linq_test
             Select_test();
             Where_test();
             OrderBy_ThenBy_test();
+            Aggregate_test();
+            Other_test();
         }
 
         //Select(他ではmapとか)のテスト。
@@ -107,6 +109,61 @@ namespace Linq_test
             {
                 Console.WriteLine(num);
             }
+        }
+
+        //Aggregate（他ではfoldとか）のテスト。結果を次に持ち越して、処理を行う？
+        private void Aggregate_test()
+        {
+            Console.WriteLine("Aggregate_test");
+            var numlist = new[] { 2, 8, 4, 1 };
+            var output = numlist.Aggregate((sum, elem) => sum + elem);
+            Console.WriteLine(output);// 15
+        }
+
+        //他、便利な物とか
+        private void Other_test()
+        {
+            Console.WriteLine("Other_test");
+
+            // 数を数える
+            var numlist = new[] { 2, 8, 4, 1 };
+            var output = numlist.Count();
+            Console.WriteLine(output);// 4
+
+            // 指定した要素の取り出し
+            var output2 = numlist.Take(3);
+            foreach (var num in output2)
+            {
+                Console.WriteLine(num);// 2,8,4
+            }
+
+            // 条件に合う最初の要素を取り出す
+            output = numlist.First(elem => elem > 3);
+            Console.WriteLine(output);// 8
+
+            // 条件に合う最後の要素を取り出す
+            output = numlist.Last(elem => elem > 3);
+            Console.WriteLine(output);// 4
+
+            // 要素の最大値
+            output = numlist.Max();
+            Console.WriteLine(output);// 8
+
+            // 要素の最小値
+            output = numlist.Min();
+            Console.WriteLine(output);// 1
+
+            // 要素が含まれているかどうか
+            var output3 = numlist.Contains(8);
+            Console.WriteLine(output3);// true
+
+            // 全てに要素に対して条件を満たしているか
+            output3 = numlist.All(elem => elem >= 8);
+            Console.WriteLine(output3);// false
+
+            // 一部に要素に対して条件を満たしているか
+            output3 = numlist.Any(elem => elem >= 8);
+            Console.WriteLine(output3);// true
         }
     }
 }
